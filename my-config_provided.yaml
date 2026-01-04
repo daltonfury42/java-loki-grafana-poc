@@ -21,16 +21,18 @@ scrape_configs:
             level: level
             class: loggerName
             message: message
-
-
+            thrownMessage: thrownMessage
+            thrownName: thrownName
+            stackTrace: stackTrace
           source: output
       - labels:
           level:
           thread:
           class:
+          thrownName:
       - template:
           source: text_output
-          template: 'class={{ .class }} thread={{ .thread }} | {{ .message }}'
+          template: 'class={{ .class }} thread={{ .thread }} | {{ .message }}: {{ .stackTrace -}}'
       - output:
           source: text_output
     kubernetes_sd_configs:

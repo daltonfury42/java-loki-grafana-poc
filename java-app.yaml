@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: java-container
-          image: my-java-app:v1
+          image: my-java-app:v2
           imagePullPolicy: IfNotPresent # Uses local image if available
           ports:
             - containerPort: 8080 # Change to your app's port

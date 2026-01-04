@@ -22,15 +22,15 @@
     "$resolver": "message",
     "stringified": true
   },
-  "thrown_message": {
+  "thrownMessage": {
     "$resolver": "exception",
     "field": "message"
   },
-  "thrown_name": {
+  "thrownName": {
     "$resolver": "exception",
     "field": "className"
   },
-  "stack_trace": {
+  "stackTrace": {
     "$resolver": "exception",
     "field": "stackTrace",
     "stackTrace": {
