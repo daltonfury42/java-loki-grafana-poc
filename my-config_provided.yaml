@@ -14,27 +14,25 @@ scrape_configs:
   # See also https://github.com/grafana/loki/blob/master/production/ksonnet/promtail/scrape_config.libsonnet for reference
   - job_name: kubernetes-pods
     pipeline_stages:
-      - cri: {}
-      # Add this match block to apply specific logic only to my-java-app
-      - match:
-          selector: '{app="my-java-app"}'  # Adjust label to match your pod's label
-          stages:
-            - json:
-                expressions:
-                  log: ""
-            - json:
-                source: log
-                expressions:
-                  "ecs.version": "ecs.version"
-                  "log.level": "log.level"
-                  "message": "message"
-                  "process.thread.name": "process.thread.name"
-                  "log.logger": "log.logger"
-                  "error.type": "error.type"
-                  "error.message": "error.message"
-                  "error.stack_trace": "error.stack_trace"
-            - output:
-                source: message
+      - docker: {}
+      - json:
+          expressions:
+            thread: thread
+            level: level
+            class: loggerName
+            message: message
+
+
+          source: output
+      - labels:
+          level:
+          thread:
+          class:
+      - template:
+          source: text_output
+          template: 'class={{ .class }} thread={{ .thread }} | {{ .message }}'
+      - output:
+          source: text_output
     kubernetes_sd_configs:
       - role: pod
     relabel_configs:

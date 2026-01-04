@@ -72,6 +72,3 @@ Replace `<promtail-pod-name>` with the actual pod name.
 ## License
 MIT
 
----
-For more details, see `notes.txt` and configuration files in the repository.
-
