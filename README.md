@@ -1,7 +1,7 @@
-# Java App with Centralized Logging (Grafana Loki)
+# JSON Structured Logging for Java/SLF4J using Grafana/Promtail/Loki
 
 ## Overview
-This project is a simple Java application that demonstrates centralized logging in a Kubernetes environment using Grafana Loki and Promtail. The app logs errors in a loop, outputs logs in JSON format, and is designed for easy integration with log aggregation and visualization tools.
+A simple POC Java application that demonstrates structured logging in a Kubernetes environment using Grafana Loki and Promtail. The app logs an error in a loop, Slf4j is configured to output logs in JSON format, which is then parsed by Promtail, stored in Loki and displayed using Grafana.
 
 ## Features
 - Java 11 application using Log4j2 for structured logging
@@ -57,12 +57,9 @@ Replace `<promtail-pod-name>` with the actual pod name.
 - Visualize logs from your Java app.
 
 ## Configuration Files
-- `log4j2.properties`: Log4j2 config for JSON console output
+- `log4j2.properties` and `JsonLogLayout.json`: Log4j2 configs for JSON console output
 - `java-app.yaml`: Kubernetes deployment manifest
 - `my-config_provided.yaml`: Promtail config for scraping logs from the app pod
-
-## Main Application Logic
-- `Main.java`: Logs an error every 10 seconds in a loop, demonstrating log forwarding and visualization.
 
 ## Troubleshooting
 - Ensure image tags match between Docker build and Kubernetes manifest
