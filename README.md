@@ -1,7 +1,7 @@
-# JSON Structured Logging for Java/SLF4J using Grafana/Promtail/Loki
+# JSON Structured Logging for Java/Log4j2 using Grafana/Promtail/Loki
 
 ## Overview
-A simple POC Java application that demonstrates structured logging in a Kubernetes environment using Grafana Loki and Promtail. The app logs an error in a loop, Slf4j is configured to output logs in JSON format, which is then parsed by Promtail, stored in Loki and displayed using Grafana.
+A simple POC Java application that demonstrates structured logging in a Kubernetes environment using Grafana Loki and [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/configuration/). The app logs an error in a loop, Log4j2 is configured with [JsonTemplateLayout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html) to output logs in JSON format, which is then parsed by Promtail, stored in Loki and displayed using Grafana.
 
 ## Features
 - Java 11 application using Log4j2 for structured logging
