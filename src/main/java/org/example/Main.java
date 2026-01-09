@@ -65,16 +65,34 @@ public class Main {
 		}
 	}
 
+	private static void deepenStack(int depth, Runnable thrower) {
+		if (depth <= 0) {
+			thrower.run();
+		} else {
+			deepenStack(depth - 1, thrower);
+		}
+	}
+
 	private static String fakeReadData(String dataId) throws Exception {
 		if (random.nextDouble() < 0.15) {
-			throw new Exception("Simulated data read failure for " + dataId);
+			final Exception[] ex = new Exception[1];
+			int stackDepth = 20 + random.nextInt(11); // 20-30 frames
+			deepenStack(stackDepth, () -> {
+				ex[0] = new Exception("Simulated data read failure for " + dataId);
+			});
+			throw ex[0];
 		}
 		return "{\"id\":\"" + dataId + "\",\"value\":" + (random.nextInt(1000)) + "}";
 	}
 
 	private static void fakeProcess() throws Exception {
 		if (random.nextDouble() < 0.1) {
-			throw new Exception("Simulated processing error");
+			final Exception[] ex = new Exception[1];
+			int stackDepth = 20 + random.nextInt(11); // 20-30 frames
+			deepenStack(stackDepth, () -> {
+				ex[0] = new Exception("Simulated processing error");
+			});
+			throw ex[0];
 		}
 		// Simulate processing time
 		Thread.sleep(100 + random.nextInt(400));
