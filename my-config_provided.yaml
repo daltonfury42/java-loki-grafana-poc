@@ -24,12 +24,16 @@ scrape_configs:
             thrownMessage: thrownMessage
             thrownName: thrownName
             stackTrace: stackTrace
+            runId: contextMap.runId
+            sinkId: contextMap.sinkId
           source: output
       - labels:
           level:
           thread:
           class:
           thrownName:
+          runId:
+          sinkId:
       - template:
           source: text_output
           template: 'class={{ .class }} thread={{ .thread }} | {{ .message }}: {{ .stackTrace -}}'
