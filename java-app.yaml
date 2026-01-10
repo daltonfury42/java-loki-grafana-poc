@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-app-deployment
+  name: java-worker-deployment
   # We will deploy to the 'default' namespace, but you can change this
   namespace: default
   labels:
-    app: my-java-app
+    app: worker-java-app
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: my-java-app
+      app: worker-java-app
   template:
     metadata:
       labels:
-        app: my-java-app # This label is KEY for finding logs in Loki
+        app: worker-java-app # This label is KEY for finding logs in Loki
     spec:
       containers:
         - name: java-container
