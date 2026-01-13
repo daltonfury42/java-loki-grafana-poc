@@ -22,8 +22,8 @@ A simple POC Java application that demonstrates structured logging in a Kubernet
 ```
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
-helm upgrade --install loki grafana/loki-stack --namespace=loki --create-namespace
-helm upgrade --install grafana grafana/grafana --namespace=grafana --create-namespace --set adminPassword='admin'
+helm upgrade --install loki grafana/loki-stack --namespace=loki --create-namespace --set loki.image.tag=2.9.15
+helm upgrade --install grafana grafana/grafana --namespace=grafana --create-namespace --set adminPassword='admin' --set image.tag=10.2.6
 ```
 
 ### 2. Port-forward Grafana UI
@@ -52,7 +52,7 @@ kubectl delete pod -n loki -l app.kubernetes.io/instance=loki
 ```
 
 ### 5. Add Loki Data Source in Grafana
-- In Grafana UI, add Loki as a data source (URL: `http://loki:3100`).
+- In Grafana UI, add Loki as a data source (URL: `http://loki:3100` or `http://loki.loki.svc.cluster.local:3100` if grafana is in different namespace).
 - Visualize logs from your Java app.
 
 ## Configuration Files
