@@ -48,9 +48,8 @@ kubectl replace --force -f java-app.yaml
 Update Promtail config and apply as a Kubernetes secret:
 ```
 kubectl create secret generic loki-promtail -n loki --from-file=promtail.yaml=my-config_provided.yaml --dry-run=client -o yaml | kubectl apply -f -
-kubectl delete pod <promtail-pod-name> -n loki
+kubectl delete pod -n loki -l app.kubernetes.io/instance=loki
 ```
-Replace `<promtail-pod-name>` with the actual pod name.
 
 ### 5. Add Loki Data Source in Grafana
 - In Grafana UI, add Loki as a data source (URL: `http://loki:3100`).
