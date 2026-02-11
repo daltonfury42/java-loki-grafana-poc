@@ -3,6 +3,9 @@
 ## Overview
 A simple POC Java application that demonstrates structured logging in a Kubernetes environment using Grafana Loki and [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/configuration/). The app logs an error in a loop, Log4j2 is configured with [JsonTemplateLayout](https://logging.apache.org/log4j/2.x/manual/json-template-layout.html) to output logs in JSON format, which is then parsed by Promtail, stored in Loki and displayed using Grafana.
 
+<img width="1512" height="725" alt="image" src="https://github.com/user-attachments/assets/8e8294ea-5287-4a5d-9676-a399a8674d2f" />
+
+
 ## Features
 - Java 11 application using Log4j2 for structured logging
 - Containerized with Docker and deployed to Kubernetes via manifest
